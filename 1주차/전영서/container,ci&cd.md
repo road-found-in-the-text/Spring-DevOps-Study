@@ -55,7 +55,6 @@ OS, 서버, 네트워크 모두 **추상화** 개념이 탑재된 소프트웨�
 
  요즘에는 CE라는 단어도 나온다고 한다. Continuous Everything이라고 한다고.. 서비스 과정의 모든 것들을 continuous하게 애자일 방식을 택하는 것을 뜻하는 듯 하다.
 
- 
 
 ## Jenkins와 Github Actions의 차이
 GitHub Actions와 Jenkins는 모두 지속적인 통합 및 배포(CI/CD)를 지원하는 자동화 도구입니다. 하지만 두 도구는 몇 가지 차이점이 있습니다.
