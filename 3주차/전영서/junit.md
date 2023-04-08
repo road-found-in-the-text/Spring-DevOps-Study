@@ -123,9 +123,45 @@ public static Singleton {
 -시스템이 너무 복잡하고 깨지기 쉬워 수정이 불가할 때
 =하부 시스템 간의 통합 테스트처럼 포괄적인 테스트를 수행할 떄
 
-✨
-실전! 스프링부트 상품-주문 API 개발로 알아보는 TDD   
-인강으로 조금 가까워짐
+# Mockito 사용 이유??
+상황 >
+```
+    @Autowired 
+    public MemberService(MemberRepository memberRepository, LoginService loginService, JwtService jwtService) {
+        this.memberRepository = memberRepository;
+        this.loginService = loginService;
+        this.jwtService = jwtService; 
+    }
+```        
+memberService는 loginService와 jwtService의 주입을 받고 있다.
+물론 하나하나 구현한 후 넣어줄 수 있지만 이는 매우 오래 걸리고 비효율적이다. 
+이런 일을 대신 해주는 것이 mockito!
 
+```
+class MemberServiceTest {
+
+    @Test
+    void createMemberServiceService() {
+        LoginService loginService = Mockito.mock(LoginService.class);
+        JwtService jwtService = Mockito.mock(JwtService.class);
+
+        MemberService memberService = new MemberService(loginService, jwtService);
+
+        Assertions.assertNotNull(memberService);
+    }
+}
+```
+
+또는 그냥 생성할 때 @Mock을 @Autowired처럼 사용할 수 있다.
+
+## when() , thenReturn()
+~했을 때 ~가 리턴되어야 한다.
+## thenThrow(), doThrow()
+thenThrow()를 이용해서 예외를 터뜨린다.
+
+✨내용 출처
+
+실전! 스프링부트 상품-주문 API 개발로 알아보는 TDD   
+https://velog.io/@zunzero/TDD
 
 
