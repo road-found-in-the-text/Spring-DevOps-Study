@@ -165,3 +165,7 @@ thenThrow()를 이용해서 예외를 터뜨린다.
 https://velog.io/@zunzero/TDD
 
 
+## 더 공부할 내용!!
+@Mock
+@Autowired
+@DataJpaTest
