@@ -338,3 +338,22 @@ Card 속에
 @OneToOne(cascade = CascadeType.PERSIST)  //함께 저장할 것임
 @JoinColumn(name="user_email")
 private User owner;
+
+------
+
+# JPA 내장함수 조금씩 이해하기
+
+public interface JpaMemberRepository extends JpaRepository<Member,Long> {
+        int modifyMemberName(Long memberId, String nickName);
+}
+
+modifyMemberName(Long memberId, String nickname) 메서드는 JPA의 내장 함수인 @Modifying 어노테이션과 @Query 어노테이션을 함께 사용하여 구현된 쿼리이다.
+Member 엔티티에서 memberId를 가진 데이터의 nickName 값을 nickname으로 변경하는 쿼리로, 아래와 같다!
+
+```
+UPDATE member SET nick_name = :nickName WHERE member_id = :memberId
+```
+이 로직은 updateMemberName으로 메소드 이름을 변경해도 상관없다.   
+JPA는 메소드명을 보고 실행해야 하는 쿼리를 자동으로 생성하기 때문에, 메소드 이름 자체가 중요한 것은 아니고,    
+메소드의 **파라미터 타입과 리턴 타입, 그리고 메소드가 수행해야 하는 로직**이 중요하다.   
+따라서, 메소드 이름을 적절하게 변경해도, 메소드 파라미터와 로직을 변경하지 않는 한, 여전히 동일한 기능을 수행할 것입니다.
